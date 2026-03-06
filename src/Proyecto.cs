@@ -21,6 +21,9 @@ class SistemaDespachos
         // Entrada de datos
         // -----------------------------
 
+// validacion de datos ingresados por el usuario
+
+
         Console.Write("Ingrese el monto del pedido: ");
         montoPedido = Convert.ToDecimal(Console.ReadLine());
 
