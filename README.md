@@ -1,200 +1,114 @@
-**Clasificador** Inteligente de Pedidos
+CLASIFICADOR INTELIGENTE DE PEDIDOS (ENTREGA 2)
 
+Miguel Ángel Berrio Agudelo
+Jhoser Ramírez Loaiza
 
+DESCRIPCIÓN DEL PROBLEMA
+Este programa simula un sistema de gestión de pedidos para una tienda online. A diferencia de la versión anterior (Entrega 1), ahora el sistema permite registrar múltiples pedidos en una misma ejecución y generar reportes estadísticos sobre todos los datos ingresados.
+El usuario puede ingresar información como el monto del pedido, ubicación del envío, tipo de cliente y cantidad de artículos. El sistema clasifica automáticamente el tipo de despacho (Gratis, Express o Estándar), calcula el costo de envío y almacena cada registro en memoria.
+Además, el sistema incluye un menú interactivo que permite registrar nuevos pedidos o visualizar estadísticas generales.
+Evolución del sistema
 
-**Equipo:** Miguel Ángel Berrio Agudelo, Jhoser Ramírez Loaiza
-
-
-
-**Descripción del problema**
-
-
-
-Este programa simula un pequeño sistema para una tienda online que clasifica los pedidos según ciertas condiciones, el usuario ingresa el monto del pedido, la ciudad de destino, el tipo de cliente y la cantidad de artículos. Con estos datos el sistema decide qué tipo de despacho se debe usar (gratis, express o estándar) y calcula el costo de envío correspondiente. Nuestro objetivo es practicar el uso de variables, condicionales y entrada de datos en C#.
-
-
-
-**IPO (Entradas – Proceso – Salidas)**
-
-
-
-**Entradas**
-
-
-
+ IPO 
+-Entradas
 montoPedido
-
-ciudadDestino
-
-tipoCliente
-
+ubicacion (Interior / Exterior)
+tipoCliente (Nuevo / Recurrente)
 cantidadItems
-
-
-
-**Proceso**
-
-
-
-Evaluar condiciones con if, else if y operadores lógicos
-
-Verificar si la ciudad es interior o exterior
-
-Determinar si aplica envío gratis
-
-
-
-**Salidas**
-
-
-
+-Proceso
+Validación de datos con TryParse
+Evaluación de condiciones con if y operadores lógicos
+Clasificación del tipo de envío
+Cálculo del costo de envío
+Almacenamiento en listas
+Generación de estadísticas mediante ciclos
+-Salidas
 Categoría de despacho
-
 Costo de envío
+Reporte estadístico:
+Total de pedidos
+Promedio
+Máximo
+Mínimo
+Cantidad por tipo de envío
 
-Mensaje con resultado
+ Estructura del sistema
+ Capa de control
+Menú interactivo con do-while
+Uso de switch para gestionar opciones
+Capa de datos
+List<decimal> para montos
+List<string> para categorías
 
-Ejemplo
+ Capa de lógica
+Validación de entradas
+Clasificación de pedidos
+Cálculo de métricas
 
- 
-
-**Entrada**
-
-
-
-montoPedido=160000
-
-ciudadDestino=interior
-
-tipoCliente=recurrente
-
+ Ejemplo de uso
+Registro de pedido
+Entrada:
+montoPedido = 160000
+ubicación = Interior
+tipoCliente = Recurrente
 cantidadItems = 3
-
-
-
-**Salida**
-
-
-
-Categoría:Envío Gratis
-
-Costo de envío: $0
-
-
-
-**Variables**
-
-
-
-**Variable	Tipo	Propósito**
-
-
-
-montoPedido	decimal	Guardar el valor total del pedido
-
-
-
-ciudadDestino	string	Indicar si el envío es interior o exterior
-
-
-
-tipoCliente	string	Saber si el cliente es nuevo o recurrente
-
-
-
-cantidadItems	int	Número de artículos del pedido
-
-
-
-categoriaDespacho	string	Guardar el tipo de envío asignado
-
-
-
-costoEnvio	decimal	Guardar el valor final del envío
-
-
-
-
-
-**Casos de prueba**
-
-
-
-**Caso normal**
-
-
-
-**Entrada**
-
-
-
-montoPedido:160000
-
-ciudadDestino: Interior
-
-tipoCliente: recurrente
-
-cantidadItems: 3
-
-
-
-**Resultado esperado**
-
+Salida:
 Categoría: Envío Gratis
-
 Costo de envío: $0
 
+Reporte estadístico (ejemplo)
+Total pedidos: 3
+Promedio: 120000
+Máximo: 200000
+Mínimo: 50000
+Tipos de envío:
+Gratis: 1
+Express: 1
+Estándar: 1
 
+Variables principales
+Variable	Tipo	Propósito
+montos	List	Almacenar montos de pedidos
+categorias	List	Guardar tipo de envío
+montoPedido	decimal	Valor del pedido
+cantidadItems	int	Cantidad de artículos
+ubicacion	string	Interior o exterior
+tipoCliente	string	Nuevo o recurrente
 
-**Caso borde**
+ Validaciones implementadas
+Uso de TryParse para evitar errores de entrada
+Restricción de valores negativos
+Validación de opciones (I/E, N/R)
+Prevención de división por cero en reportes
 
+ Casos de prueba
+ Caso normal
+Entrada:
+montoPedido: 160000
+ubicación: Interior
+tipoCliente: Recurrente
+cantidadItems: 3
+Resultado esperado:
+Categoría: Envío Gratis
+Costo: $0
 
-
-**Entrada**
-
-
-
+ Caso borde
+Entrada:
 montoPedido: 50000
-
-ciudadDestino: exterior
-
-tipoCliente: nuevo
-
+ubicación: Exterior
+tipoCliente: Nuevo
 cantidadItems: 1
-
-
-
-**Resultado esperado**
-
+Resultado esperado:
 Categoría: Envío Estándar
+Costo: $10000 (5000 base + 5000 exterior)
 
-Costo de envío: $25000
-
-(10000 del envío estándar + 15000 por ser exterior)
-
-
-
-**Instrucciones para compilar y ejecutar**
-
-
-
-1.Tener instalado .NET SDK.
-
-2.Clonar o descargar el repositorio.
-
-3\. Abrir una terminal en la carpeta del proyecto.
-
-4\. Compilar:
-
-5\. dotnet build
-
-6\. Ejecutar:
-
+ Instrucciones para compilar y ejecutar
+Tener instalado .NET SDK
+Clonar o descargar el repositorio
+Abrir una terminal en la carpeta del proyecto
+Compilar:
+dotnet build
+Ejecutar:
 dotnet run
-
-Ingresar los datos que el programa solicita en la consola.
-
-
-
-Proyecto desarrollado para práctica de lógica en C#.
+Seguir las instrucciones en consola
 
