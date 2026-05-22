@@ -1,114 +1,169 @@
-CLASIFICADOR INTELIGENTE DE PEDIDOS (ENTREGA 2)
+CLASIFICADOR INTELIGENTE DE PEDIDOS (ENTREGA 3)
+Integrantes:
+-Miguel Ángel Berrio Agudelo
+-Jhoser Ramírez Loaiza
 
-Miguel Ángel Berrio Agudelo
-Jhoser Ramírez Loaiza
+Descripción
 
-DESCRIPCIÓN DEL PROBLEMA
-Este programa simula un sistema de gestión de pedidos para una tienda online. A diferencia de la versión anterior (Entrega 1), ahora el sistema permite registrar múltiples pedidos en una misma ejecución y generar reportes estadísticos sobre todos los datos ingresados.
-El usuario puede ingresar información como el monto del pedido, ubicación del envío, tipo de cliente y cantidad de artículos. El sistema clasifica automáticamente el tipo de despacho (Gratis, Express o Estándar), calcula el costo de envío y almacena cada registro en memoria.
-Además, el sistema incluye un menú interactivo que permite registrar nuevos pedidos o visualizar estadísticas generales.
-Evolución del sistema
+Este programa simula un sistema de gestión de pedidos para una tienda online.
+Permite registrar varios pedidos durante la ejecución, clasificarlos automáticamente según ciertas condiciones y mostrar reportes estadísticos con la información guardada.
+En esta entrega se refactorizó el código para organizarlo en funciones separadas, haciendo que el programa sea más claro, ordenado y fácil de mantener.
+Arquitectura del programa
 
- IPO 
--Entradas
-montoPedido
-ubicacion (Interior / Exterior)
-tipoCliente (Nuevo / Recurrente)
-cantidadItems
--Proceso
-Validación de datos con TryParse
-Evaluación de condiciones con if y operadores lógicos
-Clasificación del tipo de envío
-Cálculo del costo de envío
-Almacenamiento en listas
-Generación de estadísticas mediante ciclos
--Salidas
-Categoría de despacho
-Costo de envío
-Reporte estadístico:
-Total de pedidos
-Promedio
-Máximo
-Mínimo
-Cantidad por tipo de envío
+El sistema quedó dividido en varias funciones:
 
- Estructura del sistema
- Capa de control
-Menú interactivo con do-while
-Uso de switch para gestionar opciones
-Capa de datos
-List<decimal> para montos
-List<string> para categorías
+Funciones principales
 
- Capa de lógica
-Validación de entradas
-Clasificación de pedidos
-Cálculo de métricas
+-`Main()` → controla el flujo general
+-`MenuPrincipal()` → muestra el menú
+-`NuevoPedido()` → registra pedidos
+-`ReporteGeneral()` → muestra estadísticas
 
- Ejemplo de uso
-Registro de pedido
+Funciones de entrada y validación
+
+-`PedirMonto()`
+-`PedirCantidad()`
+-`PedirZona()`
+-`PedirCliente()`
+
+Estas validan que los datos ingresados sean correctos.
+
+Funciones de lógica
+
+- `DefinirCategoria()`
+- `ValorEnvio()`
+
+Se encargan de calcular la categoría y el costo del envío.
+
+Función de almacenamiento
+
+- `Guardar()`
+
+Guarda la información en listas.
+
+Función auxiliar
+
+- `Esperar()`
+
+Pausa la consola para continuar.
+
+Tabla de funciones
+
+| Función | Retorno | Uso |
+|---------|---------|-----|
+| MenuPrincipal | string | Leer opción |
+| NuevoPedido | void | Registrar pedido |
+| PedirMonto | decimal | Validar monto |
+| PedirCantidad | int | Validar cantidad |
+| PedirZona | string | Validar zona |
+| PedirCliente | string | Validar cliente |
+| DefinirCategoria | string | Clasificar pedido |
+| ValorEnvio | decimal | Calcular envío |
+| Guardar | void | Guardar datos |
+| ReporteGeneral | void | Mostrar reporte |
+| Esperar | void | Pausa |
+
+Entradas
+
+El usuario debe ingresar:
+
+- Monto del pedido
+- Cantidad de productos
+- Zona (Interior o Exterior)
+- Tipo de cliente (Nuevo o Recurrente)
+
+Procesos
+
+El sistema realiza:
+
+- Validación de datos
+- Clasificación del pedido
+- Cálculo del envío
+- Guardado en memoria
+- Generación de estadísticas
+
+Salidas
+
+El programa muestra:
+
+- Categoría del pedido
+- Costo de envío
+- Reporte estadístico general
+
+Casos de prueba
+
+Caso 1
+
 Entrada:
-montoPedido = 160000
-ubicación = Interior
-tipoCliente = Recurrente
-cantidadItems = 3
-Salida:
-Categoría: Envío Gratis
-Costo de envío: $0
 
-Reporte estadístico (ejemplo)
-Total pedidos: 3
-Promedio: 120000
-Máximo: 200000
-Mínimo: 50000
-Tipos de envío:
-Gratis: 1
-Express: 1
-Estándar: 1
+- Monto: 250000
+- Cantidad: 5
+- Zona: I
+- Cliente: R
 
-Variables principales
-Variable	Tipo	Propósito
-montos	List	Almacenar montos de pedidos
-categorias	List	Guardar tipo de envío
-montoPedido	decimal	Valor del pedido
-cantidadItems	int	Cantidad de artículos
-ubicacion	string	Interior o exterior
-tipoCliente	string	Nuevo o recurrente
+Salida esperada:
 
- Validaciones implementadas
-Uso de TryParse para evitar errores de entrada
-Restricción de valores negativos
-Validación de opciones (I/E, N/R)
-Prevención de división por cero en reportes
+- Envío Gratis
+- Costo: $0
 
- Casos de prueba
- Caso normal
+Caso 2
+
 Entrada:
-montoPedido: 160000
-ubicación: Interior
-tipoCliente: Recurrente
-cantidadItems: 3
-Resultado esperado:
-Categoría: Envío Gratis
-Costo: $0
 
- Caso borde
+- Monto: 150000
+- Cantidad: 3
+- Zona: E
+- Cliente: N
+
+Salida esperada:
+
+- Envío Express
+- Costo: $15000
+
+Caso 3
+
 Entrada:
-montoPedido: 50000
-ubicación: Exterior
-tipoCliente: Nuevo
-cantidadItems: 1
-Resultado esperado:
-Categoría: Envío Estándar
-Costo: $10000 (5000 base + 5000 exterior)
 
- Instrucciones para compilar y ejecutar
-Tener instalado .NET SDK
-Clonar o descargar el repositorio
-Abrir una terminal en la carpeta del proyecto
+- Monto: 50000
+- Cantidad: 2
+- Zona: I
+- Cliente: N
+
+Salida esperada:
+
+- Envío Estándar
+- Costo: $5000
+
+Validaciones implementadas
+
+El sistema controla:
+
+- Valores negativos
+- Cantidades inválidas
+- Letras en valores numéricos
+- Opciones incorrectas para zona
+- Opciones incorrectas para cliente
+- Reportes sin registros
+
+Cómo ejecutar
+
 Compilar:
-dotnet build
-Ejecutar:
-dotnet run
-Seguir las instrucciones en consola
 
+```bash
+dotnet build
+```
+
+Ejecutar:
+
+```bash
+dotnet run
+```
+Cambios realizados en esta entrega
+
+Se hicieron mejoras como:
+
+- Separar el código en funciones
+- Mejor organización general
+- Documentación XML
+- Código más claro y mantenible
+- Mejor validación de entradas
