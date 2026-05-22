@@ -38,7 +38,7 @@ class Program
     }
 
     /// <summary>
-    /// Muestra el menú y devuelve la opción.
+    /// Muestra el menú y devuelve la opción
     /// </summary>
     /// <returns>Opción digitada.</returns>
     static string MenuPrincipal()
@@ -56,7 +56,7 @@ class Program
     }
 
     /// <summary>
-    /// Registra un pedido nuevo.
+    /// Registra un pedido nuevo
     /// </summary>
     static void NuevoPedido()
     {
@@ -79,7 +79,7 @@ class Program
     }
 
     /// <summary>
-    /// Solicita monto válido.
+    /// Solicita al usuario el monto del pedido y valida que sea correcto
     /// </summary>
     /// <returns>Monto correcto.</returns>
     static decimal PedirMonto()
@@ -93,12 +93,12 @@ class Program
             if (decimal.TryParse(Console.ReadLine(), out valor) && valor >= 0)
                 return valor;
 
-            Console.WriteLine("Monto inválido.");
+            Console.WriteLine("Error: ingrese un valor numérico válido mayor o igual a cero.");
         }
     }
 
     /// <summary>
-    /// Solicita cantidad válida.
+    /// Solicita la cantidad de productos y valida que sea un entero positivo
     /// </summary>
     /// <returns>Cantidad correcta.</returns>
     static int PedirCantidad()
@@ -112,12 +112,12 @@ class Program
             if (int.TryParse(Console.ReadLine(), out cantidad) && cantidad > 0)
                 return cantidad;
 
-            Console.WriteLine("Cantidad inválida.");
+           Console.WriteLine("Error: la cantidad debe ser un número entero mayor que cero.");
         }
     }
 
     /// <summary>
-    /// Solicita zona del pedido.
+    /// Solicita zona del pedido
     /// </summary>
     /// <returns>I o E.</returns>
     static string PedirZona()
@@ -136,7 +136,7 @@ class Program
     }
 
     /// <summary>
-    /// Solicita tipo de cliente.
+    /// Solicita tipo de cliente
     /// </summary>
     /// <returns>N o R.</returns>
     static string PedirCliente()
@@ -155,7 +155,7 @@ class Program
     }
 
     /// <summary>
-    /// Define categoría del pedido.
+    /// Define categoría del pedido
     /// </summary>
     /// <param name="monto">Monto total.</param>
     /// <param name="cantidad">Cantidad productos.</param>
@@ -173,7 +173,7 @@ class Program
     }
 
     /// <summary>
-    /// Calcula valor del envío.
+    /// Calcula valor del envío
     /// </summary>
     /// <param name="categoria">Tipo envío.</param>
     /// <param name="zona">Destino.</param>
@@ -196,7 +196,7 @@ class Program
     }
 
     /// <summary>
-    /// Guarda pedido registrado.
+    /// Guarda pedido registrado
     /// </summary>
     static void Guardar(decimal monto, string categoria)
     {
@@ -205,7 +205,7 @@ class Program
     }
 
     /// <summary>
-    /// Muestra estadísticas.
+    /// Calcula y muestra las estadísticas generales de todos los pedidos registrados
     /// </summary>
     static void ReporteGeneral()
     {
@@ -260,7 +260,7 @@ class Program
 
     static void Esperar()
     {
-        Console.WriteLine("\nPresione ENTER para continuar...");
+        Console.WriteLine("\nPresione ENTER para volver al menú principal...");
         Console.ReadLine();
     }
 }
