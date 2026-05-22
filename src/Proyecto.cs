@@ -24,6 +24,10 @@ class Program
                     ReporteGeneral();
                     break;
 
+                    case "3":
+                    ReiniciarDatos();
+                    break;
+
                 case "0":
                     activo = false;
                     break;
@@ -48,6 +52,7 @@ class Program
         Console.WriteLine("===== CLASIFICADOR DE PEDIDOS =====");
         Console.WriteLine("1. Registrar pedido");
         Console.WriteLine("2. Mostrar reporte");
+        Console.WriteLine("3. Reiniciar registros");
         Console.WriteLine("0. Salir");
 
         Console.Write("\nSeleccione una opción: ");
@@ -258,9 +263,38 @@ class Program
         Esperar();
     }
 
-    static void Esperar()
+   static void Esperar()
+{
+    Console.WriteLine("\nPresione ENTER para volver al menú principal...");
+    Console.ReadLine();
+}
+
+/// <summary>
+/// Borra todos los pedidos registrados.
+/// </summary>
+static void ReiniciarDatos()
+{
+    if (listaMontos.Count == 0)
     {
-        Console.WriteLine("\nPresione ENTER para volver al menú principal...");
-        Console.ReadLine();
+        Console.WriteLine("No hay registros para eliminar.");
+        Esperar();
+        return;
     }
+
+    Console.Write("¿Seguro que desea borrar todo? (S/N): ");
+    string respuesta = Console.ReadLine().ToUpper();
+
+    if (respuesta == "S")
+    {
+        listaMontos.Clear();
+        listaCategorias.Clear();
+        Console.WriteLine("Todos los registros fueron eliminados.");
+    }
+    else
+    {
+        Console.WriteLine("Operación cancelada.");
+    }
+
+    Esperar();
+}
 }
